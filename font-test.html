@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>IMG_PICKER</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="./css/common.css">
+<script type="text/javascript" src="./js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+</head>
+<body>
+
+<!-- wrapper -->
+<div id="wrapper">
+	<!-- Container -->
+	<div id="container">
+		<div id="content">
+			
+			<div class="ygmPicker">
+
+				<select multiple="multiple" class="image-picker">
+				  <option data-img-src="./images/pic_01.jpg">Cute Kitten 1</option>
+				  <option data-img-src="./images/pic_02.jpg">Cute Kitten 2</option>
+				  <option data-img-src="./images/pic_03.jpg">Cute Kitten 3</option>
+				  <option data-img-src="./images/pic_04.jpg">Cute Kitten 4</option>
+				</select>
+
+				<ul class="image-list">
+					<li>
+						<div class="img-area"><img src="./images/pic_01.jpg"></div>
+					</li>
+					<li>
+						<div class="img-area"><img src="./images/pic_02.jpg"></div>
+					</li>
+					<li>
+						<div class="img-area"><img src="./images/pic_03.jpg"></div>
+					</li>
+					<li>
+						<div class="img-area"><img src="./images/pic_04.jpg"></div>
+					</li>
+				</ul>
+
+			</div>
+
+
+			<script>
+				$(function(){
+
+					var picker = $(".ygmPicker");
+					var el_option = picker.find("option");
+					var el_img_area = picker.find(".image-list .img-area");
+					var el_img = picker.find(".image-list .img-area img");
+
+					el_img_area.click(function(){
+						if($(this).hasClass("selected")) {
+							$(this).removeClass("selected");
+						} else {
+							$(this).addClass("selected");
+						}
+
+					})
+					
+					// 옵션 마우스업 
+					el_option.mouseup(function(e){
+						el_img_area.removeClass("selected")
+						el_option.each(function (i,e){
+							if($(this).context.selected) {
+								$(this).parents(".ygmPicker").find(".img-area").eq(i).addClass("selected");
+							}
+						});
+					})
+
+					// 이미지 클릭 
+					el_img.click(function(e){
+						el_img.each(function (i,e){
+							if($(this).parent(".img-area").hasClass("selected")) {
+								$(this).parents(".ygmPicker").find("option").eq(i).attr("selected",true)
+							} 
+							else {
+								$(this).parents(".ygmPicker").find("option").eq(i).attr("selected",false)
+							}
+						});
+					});
+
+
+
+
+
+
+
+
+					// el_option.mouseup(function(){
+					// 	var option = $(this);
+
+					// 	el_img.each(function (i,e){
+					// 		if(option.attr("data-img-src") == $(this).attr("src")) {
+					// 			if(!option.prop("checked")){
+					// 				option.prop("checked", "checked")
+					// 				$(this).parent(".img-area").addClass("selected");
+					// 			} else {
+					// 				option.prop("checked", false)
+					// 				$(this).parent(".img-area").removeClass("selected");
+					// 			}
+					// 		}
+					// 	})
+					// })
+
+					// el_img.click(function(){
+					// 	var img = $(this);
+
+					// 	el_option.each(function (i,e){
+					// 		if(img.attr("src") == $(this).attr("data-img-src")) {
+					// 			if(!$(this).hasClass("selected")) {
+					// 				$(this).addClass("selected");
+					// 				img.parent(".img-area").addClass("selected");
+					// 			} else {
+					// 				$(this).removeClass("selected");
+					// 				img.parent(".img-area").removeClass("selected");
+					// 			}
+					// 		}
+					// 	})
+					// })
+					
+				})
+			</script>
+
+		
+		</div>
+		<!-- // #content -->
+	</div>
+	<!-- // #Container -->
+</div>
+<!-- // #wrapper -->
+
+</body>
+</html>
