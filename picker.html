@@ -46,82 +46,45 @@
 
 			<script>
 				$(function(){
-
 					var picker = $(".ygmPicker");
 					var el_option = picker.find("option");
-					var el_img_area = picker.find(".image-list .img-area");
 					var el_img = picker.find(".image-list .img-area img");
 
-					el_img_area.click(function(){
-						if($(this).hasClass("selected")) {
-							$(this).removeClass("selected");
-						} else {
-							$(this).addClass("selected");
-						}
-
-					})
-					
 					// 옵션 마우스업 
 					el_option.mouseup(function(e){
-						el_img_area.removeClass("selected")
+						el_img.parent(".img-area").removeClass("selected")
 						el_option.each(function (i,e){
-							if($(this).context.selected) {
+							if($(this).prop("selected")) {
 								$(this).parents(".ygmPicker").find(".img-area").eq(i).addClass("selected");
 							}
 						});
 					})
 
-					// 이미지 클릭 
-					el_img.click(function(e){
-						el_img.each(function (i,e){
-							if($(this).parent(".img-area").hasClass("selected")) {
-								$(this).parents(".ygmPicker").find("option").eq(i).attr("selected",true)
-							} 
-							else {
-								$(this).parents(".ygmPicker").find("option").eq(i).attr("selected",false)
-							}
-						});
+					// 이미지 클릭
+					el_img.click(function(){
+						var img = $(this);
+						img.parent(".img-area").toggleClass("selected");
+						// el_option.each(function(i,item){
+						// 	if(img.parent(".img-area").hasClass("selected") && img.attr("src") == $(item).attr("data-img-src")) {
+						// 		$(item).prop("selected",true);
+						// 	} else if(!img.parent(".img-area").hasClass("selected") && img.attr("src") == $(item).attr("data-img-src")){
+						// 		$(item).prop("selected",false);
+						// 	}
+						// })
+						if (img.parent(".img-area").hasClass("selected")) {
+							el_option.each(function(i,item){
+								if(img.attr("src") == $(item).attr("data-img-src")) {
+									$(item).prop("selected",true)
+								}
+							})
+						} else {
+							el_option.each(function(i,item){
+								if(img.attr("src") == $(item).attr("data-img-src")) {
+									$(item).prop("selected",false)
+								}
+							})
+						}
 					});
-
-
-
-
-
-
-
-
-					// el_option.mouseup(function(){
-					// 	var option = $(this);
-
-					// 	el_img.each(function (i,e){
-					// 		if(option.attr("data-img-src") == $(this).attr("src")) {
-					// 			if(!option.prop("checked")){
-					// 				option.prop("checked", "checked")
-					// 				$(this).parent(".img-area").addClass("selected");
-					// 			} else {
-					// 				option.prop("checked", false)
-					// 				$(this).parent(".img-area").removeClass("selected");
-					// 			}
-					// 		}
-					// 	})
-					// })
-
-					// el_img.click(function(){
-					// 	var img = $(this);
-
-					// 	el_option.each(function (i,e){
-					// 		if(img.attr("src") == $(this).attr("data-img-src")) {
-					// 			if(!$(this).hasClass("selected")) {
-					// 				$(this).addClass("selected");
-					// 				img.parent(".img-area").addClass("selected");
-					// 			} else {
-					// 				$(this).removeClass("selected");
-					// 				img.parent(".img-area").removeClass("selected");
-					// 			}
-					// 		}
-					// 	})
-					// })
-					
 				})
 			</script>
 
