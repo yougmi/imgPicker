@@ -50,10 +50,8 @@ fieldset {border:0;}
 input:disabled,select:disabled {background:#f6f6f6;}
 .hidden {position:absolute;top:0;left:-1000000000000px;width:0;height:0;font-size:0;}
 
-
 /**********************************************************************************************************************************************************/
 /**********************************************************************************************************************************************************/
-
 
 /* LAYOUT */
 #wrapper {position:relative;min-width:1260px;min-height:100%;}
@@ -66,31 +64,4 @@ input:disabled,select:disabled {background:#f6f6f6;}
 .ygmPicker .image-list li .img-area.selected {border-color:red;}
 .ygmPicker .image-list li img {display:inline-block;width:100%;}
 
-/* select:-internal-list-box option:checked {
-    color: #333 !important;
-    background-color: #FFC894 !important;
-}
-select:-internal-list-box option:selected  {
-    color: #333 !important;
-    background-color: #FFC894 !important;
-}
-
-select:-internal-list-box:focus option:checked  {
-    color: #333 !important;
-    background-color: #FFC894 !important;
-}
-
-select:-internal-list-box:focus option:selected  {
-    color: #333 !important;
-    background-color: #FFC894 !important;
-}
-
-select:-internal-list-box:focus option::selection  {
-    color: #333 !important;
-    background-color: #FFC894 !important;
-} */
-select option:checked
-{
-    background: linear-gradient(#FFC894,#FFC894);
-    background-color: #FFC894 !important; /* for IE */
-}
+select option:checked{background: linear-gradient(#FFC894,#FFC894);background-color: #FFC894 !important; /* for IE */}
